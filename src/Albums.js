@@ -2,6 +2,8 @@ import React from 'react';
 import useCollapse from 'react-collapsed';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import photos from "./photos.js";
+
 
 function Collapsible() {
     const config = {
@@ -34,7 +36,7 @@ function Collapsible() {
                 <div className="content">
                     {name.map((user, index) => (
                         <div className="name" key={index}>
-                            <button className="btn">{user.title}</button>
+                            <button className="btn" onClick={photos}>{user.title}</button>
                             {/* {user.body} */}
                         </div>
                     )

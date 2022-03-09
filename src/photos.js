@@ -11,7 +11,7 @@ function Collapsible() {
 
     useEffect(() => {
         axios
-            .get("https://jsonplaceholder.typicode.com/posts")
+            .get("https://jsonplaceholder.typicode.com/photos")
             .then((res) => {
                 console.log(res.data);
                 setName(res.data);
@@ -26,38 +26,26 @@ function Collapsible() {
     return (
 
         <div className="collapsible">
-            <h3> User Posts</h3>
             <div className="header" {...getToggleProps()}>
                 {isExpanded ? 'Collapse' : 'Posts'}
             </div>
             <div {...getCollapseProps()}>
                 <div className="content">
-                    <div><input type="search"></input><button>Search</button></div>
-                    <input type="text"></input><button>Comment</button>
-                    <div>
-                        <button>Post Comment</button>
-                    </div>
                     {name.map((user, index) => (
-                        <div className="name" key={index}>
-                            {user.title}
-                            {/* {user.body} */}
-                        </div>
-                    )
+                        <img src={user.url} key={index} alt="" />
+                            )
                     )}
-                  
 
-
-
-                </div>
+                        </div>
             </div>
-           
 
-        </div>
-    );
+
+            </div>
+            );
 }
-function Posts() {
+            function Posts() {
     return (
-        <Collapsible />
-    );
+            <Collapsible />
+            );
 }
-export default Posts;
+            export default Posts;
