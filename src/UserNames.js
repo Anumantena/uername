@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import Details from "./Details.js";
 
 function UserNames() {
 
@@ -27,20 +28,23 @@ function UserNames() {
     return (
         <div>
             <h2> User's List</h2>
-            
             {name.map((user, index) => (
                 <div className="name" key={index}>
-                    <span className="hovertext" data-hover={"UserName:"+ user.username + "," + "Email:" +  user.email}>
+                    <span className="hovertext" data-hover={"UserName:"+ user.username+" " +" "+ "," +" " +"Email:" +  user.email}>
+                        {/* {<Details  name = {user.name}
+                    email= {user.email}
+                    phone = {user.phone}
+                    website= {user.website}
+                    address= {user.address}
+                    />} */}
                         <button className="btn" onClick={Details} >{user.name} </button>
                     </span>
+                   
+
                 </div>
-                
-
+              
             ))}
-
-
-        </div>
-        
+        </div> 
     );
 }
 
