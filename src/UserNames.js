@@ -9,8 +9,10 @@ function UserNames() {
 
     const [name, setName] = useState([]);
     const navigate = useNavigate();
-    const Details = () => {
-        navigate("/Details.js")
+    const Details = (e,userID) => {
+        console.log(userID)
+        e.preventDefault();
+        navigate(`/Details/${userID}`)
     }
 
     useEffect(() => {
@@ -37,7 +39,7 @@ function UserNames() {
                     website= {user.website}
                     address= {user.address}
                     />} */}
-                        <button className="btn" onClick={Details} >{user.name} </button>
+                        <button className="btn" onClick={(e) => Details(e,user.id)} >{user.name} </button>
                     </span>
                    
 

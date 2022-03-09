@@ -7,6 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import Details from "./Details.js"
+import Photos from "./Photos.js"
 
 
 function App() {
@@ -18,8 +19,12 @@ function App() {
                     <Route exact path="/" 
                         element={<UserNames/>} />
   
-                    <Route exact path="/Details.js" 
+                    <Route path='/Details/:userID'
                         element={<Details/>} />
+            
+            <Route path='/photos/:id'
+            element={<Photos/>} />
+
         </Routes>
             </Router>
         </>

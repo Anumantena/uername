@@ -1,7 +1,9 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
 import { Button } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useParams} from "react-router-dom";
 import Posts from "./userPosts";
 import Albums from "./Albums.js";
 
@@ -10,8 +12,25 @@ function Details(props) {
     const home = () => {
         navigate("/");
     }
+    const {userID} =useParams();
+
+    const[userDetails, setuserDetails] = useState({});
+
+    useEffect(() => {
+        axios
+            .get(`https://jsonplaceholder.typicode.com/users/${userID}`)
+            .then((res) => {
+                console.log(res.data);
+                setuserDetails(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+
     return (
-        <Card>
+        <Card style={{ width: '20rem' }}>
             <h2>Details List</h2>
             <h3>User's Profile</h3>
 
@@ -19,14 +38,14 @@ function Details(props) {
             <Card.Body>
                 <Card.Title></Card.Title>
                 <Card.Text> 
-                    Name : {props.name}
-                    Email: {props.email}
-                    Phone: {props.phone}
-                    Website: {props.website}
-                    Address: {props.address}
+                    Name : {userDetails.name} 
+                    Email: {userDetails.email} 
+                    Phone: {userDetails.phone}
+                    Website: {userDetails.website}
+                    {/* Address: {userDetails.address.street+" "+userDetails.address.suite+" "+userDetails.address.city+" "+userDetails.address.zipcode} */}
                 </Card.Text>
-                <Posts/>
-                <Albums/>
+                <Posts userId={+userID}/>
+                <Albums userId={+userID}/>
                 <Button className="btn btn-success" onClick={home}>Back to Home</Button>
             </Card.Body>
         </Card>
